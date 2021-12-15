@@ -8,7 +8,7 @@ class Api::V1::RidesController < ApplicationController
 
     if limit.present?
       limit = limit.to_i
-      @rides = @todos.last(limit)
+      @rides = @rides.last(limit)
     end
 
     render json: @rides.reverse

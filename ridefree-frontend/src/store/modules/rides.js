@@ -10,11 +10,14 @@ const actions = {
     const response = await axios.get(api_url);
     commit('setRides', response.data);
   },
-  async addRide( { commit }, pickup_address) {
+  async addRide( { commit }, r) {
     const response = await axios.post(api_url,
       {
         ride: {
-          pickup_address,
+          pickup_address: r.pickup_address,
+          dropoff_address: r.dropoff_address,
+          pickup_datetime: r.pickup_datetime,
+          notes: r.notes,
           claimed: false
         }
       });
