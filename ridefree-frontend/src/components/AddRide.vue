@@ -14,7 +14,7 @@
           </li>
           <li>
             <label for="pickup_datetime">Pickup Date/Time</label>
-            <input type="text" id="pickup_datetime" v-model="ride.pickup_datetime" placeholder="When do you need a ride?">
+            <v-date-picker class="pickup_datetime" v-model="ride.pickup_datetime" mode="dateTime" />
           </li>
           <li>
             <label for="notes">Note to Driver</label>
@@ -58,6 +58,9 @@ export default {
 <style scoped>
 form {
   display: flex;
+}
+.pickup_datetime {
+  min-width: 315px;
 }
 input[type="text"] {
   flex: 10;
