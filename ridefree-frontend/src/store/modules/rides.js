@@ -3,12 +3,17 @@ const api_url = "http://localhost:3000/api/v1/rides"
 
 const state = {};
 const getters = {
-  allRides: (state) => state.rides
+  allRides: (state) => state.rides,
+  ride: (state) => state.ride,
 };
 const actions = {
   async fetchRides({ commit }) {
     const response = await axios.get(api_url);
     commit('setRides', response.data);
+  },
+  async fetchRide({ commit }, id) {
+    const response = await axios.get(api_url + `/${id}`);
+    commit('setRide', response.data);
   },
   async addRide( { commit }, r) {
     const response = await axios.post(api_url,
@@ -34,6 +39,7 @@ const actions = {
 };
 const mutations = {
   setRides: (state, rides) => (state.rides = rides),
+  setRide: (state, ride) => (state.ride = ride),
   newRide: (state, ride) => (state.rides.unshift(ride)),
   removeRide: (state, id) =>
     (state.rides = state.rides.filter(ride => ride.id !== id)),
