@@ -31,6 +31,7 @@
 
 <script>
 import { mapActions }from 'vuex';
+import { useToast } from "vue-toastification";
 export default {
     name: 'AddRide',
     data() {
@@ -49,9 +50,18 @@ export default {
       ...mapActions(['fetchRide']),
       ...mapActions(['addRide']),
       ...mapActions(['updateRide']),
+      redirect() {
+        this.$router.push('/rides')
+      },
       onSubmit(event) {
         event.preventDefault();
         this.addRide(this.ride);
+        // Get toast interface
+        const toast = useToast();
+        toast.success("Ride Requested!", {
+          timeout: 2000,
+          onClose: this.redirect()
+        });
       }
     },
     created: function () {
