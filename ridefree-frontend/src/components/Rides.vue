@@ -15,6 +15,7 @@
       class="ride"
       v-for="ride in allRides"
       :key="ride.id"
+      @click="onClick(ride)"
       @dblclick="onDoubleClick(ride)"
       v-bind:class="{ is_claimed: ride.claimed }"
       >
@@ -52,6 +53,9 @@ export default {
         claimed: !currentRide.claimed,
       }
       this.updateRide(updatedRide)
+    },
+    onClick(currentRide) {
+      this.$router.push('/ride/' + currentRide.id)
     }
   },
   computed: {

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h3>Add Ride</h3>
+    <h2>Add Ride</h2>
     <div class="add">
       <form @submit="onSubmit">
         <ul class="flex-outer">
@@ -9,8 +9,8 @@
             <input id="pickup_address" type="text" v-model="ride.pickup_address" placeholder="Pickup" />
           </li>
           <li>
-            <label for="pickup_address">Dropoff Address</label>
-            <input id="pickup_address" type="text" v-model="ride.dropoff_address" placeholder="Dropoff">
+            <label for="dropoff_address">Dropoff Address</label>
+            <input id="dropoff_address" type="text" v-model="ride.dropoff_address" placeholder="Dropoff">
           </li>
           <li>
             <label for="pickup_datetime">Pickup Date/Time</label>
@@ -35,7 +35,9 @@ export default {
     name: 'AddRide',
     data() {
       return {
+        update: false,
         ride: {
+          id: null,
           pickup_address: "",
           dropoff_address: "",
           pickup_datetime: "",
@@ -44,13 +46,32 @@ export default {
       }
     },
     methods: {
+      ...mapActions(['fetchRide']),
       ...mapActions(['addRide']),
+      ...mapActions(['updateRide']),
       onSubmit(event) {
         event.preventDefault();
         this.addRide(this.ride);
-        this.pickup_address = "";
       }
-    }
+    },
+    created: function () {
+      this.ride.id = this.$route.params.id;
+      if (this.ride.id != null) {
+        this.update = true;
+        this.fetchRide(this.ride.id);
+      }
+    },
+    mounted() {
+       if (this.ride.id != null) {
+        console.log(this.getRideById(this.ride.id).pickup_address)
+        //
+        // this.ride.pickup_address = this.getRide.pickup_address;
+        // this.ride.dropoff_address = this.getRide.dropoff_address;
+        // this.ride.pickup_datetime = this.getRide.pickup_datetime;
+        // this.ride.notes = this.getRide.notes;
+
+     }
+    },
 }
 
 </script>

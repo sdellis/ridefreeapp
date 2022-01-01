@@ -2,6 +2,7 @@ import { createWebHistory, createRouter } from "vue-router";
 import Home from "@/components/Home.vue";
 import Rides from "@/components/Rides.vue";
 import AddRide from "@/components/AddRide.vue";
+import ShowEditRide from "@/components/ShowEditRide.vue";
 
 const routes = [
   {
@@ -15,9 +16,14 @@ const routes = [
     component: Rides,
   },
   {
-    path: "/addride",
+    path: "/ride/add",
     name: "AddRide",
     component: AddRide,
+  },
+  {
+    path: "/ride/:id",
+    name: "ShowEditRide",
+    component: ShowEditRide,
   },
 ];
 
