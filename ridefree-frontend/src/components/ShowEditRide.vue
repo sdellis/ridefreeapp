@@ -43,6 +43,7 @@
 
 <script>
 import {mapGetters, mapActions} from 'vuex';
+import { useToast } from "vue-toastification";
 export default {
     name: 'ShowEditRide',
     data() {
@@ -61,9 +62,18 @@ export default {
         'deleteRide',
         'updateRide'
       ]),
+      redirect () {
+        this.$router.push('/rides');
+      },
       onSubmit(event) {
         event.preventDefault();
         this.updateRide(this.ride);
+        // Get toast interface
+        const toast = useToast();
+        toast.success("Ride Updated!", {
+          timeout: 2000,
+          onClose: this.redirect()
+        });
       },
       editRide () {
         this.editing = !this.editing
