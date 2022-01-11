@@ -48,7 +48,7 @@ export default {
     name: 'ShowEditRide',
     data() {
       return {
-        editing: false,
+        editing: true,
       }
     },
     computed: {

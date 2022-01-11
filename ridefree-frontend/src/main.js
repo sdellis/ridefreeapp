@@ -4,6 +4,8 @@ import "./registerServiceWorker";
 import store from "./store";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faHandPaper } from "@fortawesome/free-solid-svg-icons";
+import { faEdit } from "@fortawesome/free-solid-svg-icons";
 import VCalendar from 'v-calendar';
 import router from './router'
 import VueBottomNavigation from "bottom-navigation-vue";
@@ -12,6 +14,8 @@ import Toast from "vue-toastification";
 import "vue-toastification/dist/index.css";
 
 library.add(faTrash);
+library.add(faHandPaper);
+library.add(faEdit);
 
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 

@@ -15,17 +15,32 @@
       class="ride"
       v-for="ride in allRides"
       :key="ride.id"
-      @click="onClick(ride)"
-      @dblclick="onDoubleClick(ride)"
       v-bind:class="{ is_claimed: ride.claimed }"
       >
-        {{ ride.pickup_address }} to {{ ride.dropoff_address }}
-        on {{ ride.pickup_datetime }}
-        <font-awesome-icon
-          icon="trash"
-          class="i"
-          @click="deleteRide(ride.id)"
-        />
+        <div class="details">
+          {{ ride.pickup_address }} to {{ ride.dropoff_address }}
+          on {{ ride.pickup_datetime }}
+        </div>
+        <div class="cardmenu">
+          <div @click="onDoubleClick(ride)">
+            <font-awesome-icon
+              icon="hand-paper"
+              class="i"
+            /> CLAIM
+          </div>
+          <div @click="onClick(ride)">
+            <font-awesome-icon
+              icon="edit"
+              class="i"
+            /> EDIT
+          </div>
+          <div @click="deleteRide(ride.id)">
+            <font-awesome-icon
+              icon="trash"
+              class="i"
+            /> REMOVE
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -56,7 +71,7 @@ export default {
     },
     onClick(currentRide) {
       this.$router.push('/ride/' + currentRide.id)
-    }
+    },
   },
   computed: {
     ...mapGetters([
@@ -85,13 +100,25 @@ li {
 a {
   color: #42b983;
 }
+
 .rides {
+  --w:400px;
+  --n:3;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(max(var(--w), 100%/(var(--n) + 1) + 0.1%),1fr)); /*this */
+  gap:1rem;
+}
+
+/* .rides {
+  --w:300px;
+  --n:3;
   display:grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 1rem;
-}
+} */
 .ride {
   border: 1px solid #ccc;
+  height:200px;
   background: #41b883;
   padding: 1rem;
   border-radius: 5px;
@@ -99,10 +126,20 @@ a {
   position: relative;
   cursor: pointer;
 }
-.i {
+
+.cardmenu {
+  display: flex;
+  justify-content: center;
+  gap:2rem;
   position: absolute;
   bottom: 10px;
   right: 10px;
+}
+
+.i {
+  /* position: absolute;
+  bottom: 10px;
+  right: 10px; */
   color: #fff;
   cursor: pointer;
 }
