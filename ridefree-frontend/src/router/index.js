@@ -3,6 +3,7 @@ import Home from "@/components/Home.vue";
 import Rides from "@/components/Rides.vue";
 import AddRide from "@/components/AddRide.vue";
 import ShowEditRide from "@/components/ShowEditRide.vue";
+import Session from "@/components/Session.vue";
 
 const routes = [
   {
@@ -25,6 +26,11 @@ const routes = [
     name: "ShowEditRide",
     component: ShowEditRide,
   },
+  {
+    path: "/session",
+    name: "Session",
+    component: Session,
+  }
 ];
 
 const router = createRouter({
