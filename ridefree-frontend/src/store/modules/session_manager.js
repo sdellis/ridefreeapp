@@ -42,6 +42,7 @@ const actions = {
     });
   },
   loginUser({ commit }, payload) {
+    console.log(payload);
     return new Promise((resolve, reject) => {
       axios
         .post(`${BASE_URL}users/sign_in`, payload)
@@ -98,10 +99,11 @@ const mutations = {
   setUserInfo(state, payload) {
     state.user = payload.data.user;
     state.auth_token = payload.headers.authorization;
+    console.log(payload.headers.authorization)
     axios.defaults.headers.common['Authorization'] = payload.headers.authorization;
     localStorage.setItem("auth_token", payload.headers.authorization);
   },
-  setUserInfo(state, payload) {
+  setUserInfoFromToken(state, payload) {
     state.user = payload.data.user;
     state.auth_token = localStorage.getItem("auth_token");
   },
