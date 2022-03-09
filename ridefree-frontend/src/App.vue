@@ -25,7 +25,7 @@ export default {
       { id: 2, icon: "fas fa-plus", title: "Request Ride", path: "/ride/add" },
       { id: 3, icon: "fas fa-car", title: "Rides", badge: 15, path: "/rides" },
       { id: 4, icon: "fas fa-bell", title: "Notification", badge: 10 },
-      { id: 5, icon: "fas fa-user", title: "Account" },
+      { id: 5, icon: "fas fa-user", title: "Account", path:"/session" },
     ],
   }),
 };
